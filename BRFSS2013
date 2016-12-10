@@ -1,0 +1,90 @@
+---
+  title: "Exploring the BRFSS data"
+output: 
+  html_document: 
+  fig_height: 4
+highlight: pygments
+theme: spacelab
+---
+  
+  ## Setup
+  
+  ### Load packages
+  
+  ```{r load-packages, message = FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+### Load data
+
+Make sure your data and R Markdown files are in the same directory. When loaded
+your data file will be called `brfss2013`. Delete this note when before you submit 
+your work. 
+
+```{r load-data}
+load("brfss2013.RData")
+```
+
+
+
+* * *
+  
+  ## Part 1: Data
+  # The brfss2013 data collected is a very extensive data set as it covers all of the state of the US
+  # They are all observational data so that can be used for generalizational statements not causality
+  # Given the size of the data set, inference can be generalized to an entire state and each state aggregated together, inference canapply to the entire country.
+  # The data is beautiful gives room for multi-varriable comparison. 
+  
+  * * *
+  
+  ## Part 2: Research questions
+  
+  **Research quesion 1:**#Are medical cost too high? when considering the state Alaska
+  
+  **Research quesion 2:**# Are they regular smokers in Albama?
+  
+  **Research quesion 3:**# Do they have health plans in Delaware?
+  
+  
+  * * *
+  
+  ## Part 3: Exploratory data analysis
+  
+#NOTE: Insert code chunks as needed by clicking on the "Insert a new code chunk" 
+button (green button with orange arrow) above. Make sure that your code is visible
+in the project you submit. Delete this note when before you submit your work.
+
+**Research quesion 1:**
+  
+  ```{r}
+plot(brfss2013 %>% 
+       filter(!is.na(medcost), X_state=="Alaska") %>% 
+       select(medcost), main="Medical costs too high?"
+     )
+
+```
+
+
+
+**Research quesion 2:**
+  
+  ```{r}
+plot(brfss2013 %>% 
+       filter(X_state=="Albama") %>% 
+       select(smokday2), main="Frequency days now smoking"
+     )
+
+```
+
+
+
+**Research quesion 3:**
+  
+  ```{r}
+plot(brfss2013 %>% 
+       filter(X_state=="Delaware") %>% 
+       select(hlthpln1), main="Does have health plan?"
+     )
+
+```
